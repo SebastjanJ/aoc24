@@ -27,16 +27,15 @@ func parttwo2(lines [][]int) {
 	for _, nums := range lines {
 		if checkSafe(nums) {
 			count += 1
-		} else {
-			for i := 0; i < len(nums); i++ {
-				tmpnums := append(append([]int(nil), nums[:i]...), nums[i+1:]...)
-				if checkSafe(tmpnums) {
-					count += 1
-					break
-				}
+			continue
+		}
+		for i := 0; i < len(nums); i++ {
+			tmpnums := append(append([]int(nil), nums[:i]...), nums[i+1:]...)
+			if checkSafe(tmpnums) {
+				count += 1
+				break
 			}
 		}
-
 	}
 	fmt.Println("Part Two: ", count)
 }
@@ -48,13 +47,13 @@ func checkLevels(a int, b int) bool {
 func checkSafe(nums []int) bool {
 	reversed := append([]int(nil), nums...)
 	slices.Reverse(reversed)
-	if slices.IsSorted(nums) || slices.IsSorted(reversed) {
-		for i := 1; i < len(nums); i++ {
-			if checkLevels(nums[i], nums[i-1]) {
-				return false
-			}
-		}
-		return true
+	if !slices.IsSorted(nums) && !slices.IsSorted(reversed) {
+		return false
 	}
-	return false
+	for i := 1; i < len(nums); i++ {
+		if checkLevels(nums[i], nums[i-1]) {
+			return false
+		}
+	}
+	return true
 }
