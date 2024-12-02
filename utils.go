@@ -2,12 +2,33 @@ package main
 
 import (
 	"fmt"
-	"github.com/echojc/aocutil"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/echojc/aocutil"
 )
+
+func getInputIntsAll(day int) [][]int {
+	var lines []string
+	var ints [][]int
+	if day == 0 {
+		lines, _ = GetTest[string]()
+	} else {
+		lines = getInputStrings(day)
+	}
+	for _, line := range lines {
+		var intline []int
+		args := strings.Fields(line)
+		for _, arg := range args {
+			argint, _ := strconv.Atoi(arg)
+			intline = append(intline, argint)
+		}
+		ints = append(ints, intline)
+	}
+	return ints
+}
 
 func getInputStrings(day int) []string {
 	client, err := aocutil.NewInputFromFile("session.txt")
@@ -86,6 +107,7 @@ func parseInts(content []byte) []int {
 	ints := make([]int, len(lines))
 	for i, line := range lines {
 		ints[i], _ = strconv.Atoi(line) // Handle errors as needed
+		fmt.Println(ints[i])
 	}
 	return ints
 }

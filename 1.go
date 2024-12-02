@@ -5,34 +5,38 @@ import (
 	"math"
 	"slices"
 	"sort"
-	"strconv"
-	"strings"
 )
 
 func Day1() {
-	// lines, _ := GetTest[string]()
-	lines := getInputStrings(1)
 	var left []int
 	var right []int
-	diff := 0
-	simi := 0
+
+	lines := getInputIntsAll(1)
 
 	for _, line := range lines {
-		args := strings.Fields(line)
-		leftint, _ := strconv.Atoi(args[0])
-		left = append(left, leftint)
-		rightint, _ := strconv.Atoi(args[1])
-		right = append(right, rightint)
+		left = append(left, line[0])
+		right = append(right, line[1])
 	}
 
 	sort.Ints(left)
 	sort.Ints(right)
 
+	partone1(left, right)
+	parttwo1(left, right)
+
+}
+
+func partone1(left []int, right []int) {
+	diff := 0
 	for i := 0; i < len(left); i++ {
 		diff += int(math.Abs(float64(left[i] - right[i])))
 	}
 	fmt.Println("Part One:", diff)
 
+}
+
+func parttwo1(left []int, right []int) {
+	simi := 0
 	for _, num := range left {
 		i, found := slices.BinarySearch(right, num)
 		if found {
@@ -44,4 +48,5 @@ func Day1() {
 		}
 	}
 	fmt.Println("Part Two:", simi)
+
 }
