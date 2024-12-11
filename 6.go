@@ -8,6 +8,10 @@ type Point struct {
 	i, j int
 }
 
+func (p Point) add(other Point) Point {
+	return Point{p.i + other.i, p.j + other.j}
+}
+
 type Guard struct {
 	cor   Point
 	dir   rune
