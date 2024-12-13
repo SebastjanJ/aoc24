@@ -10,6 +10,16 @@ import (
 	"github.com/echojc/aocutil"
 )
 
+func insert(slice []int, i int, value int) []int {
+	// Grow the slice by one element
+	slice = append(slice, 0)
+	// Shift elements to make room
+	copy(slice[i+1:], slice[i:])
+	// Insert the value
+	slice[i] = value
+	return slice
+}
+
 func getInputIntsAll(day int) [][]int {
 	var lines []string
 	var ints [][]int
