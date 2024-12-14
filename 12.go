@@ -22,6 +22,7 @@ func Day12() {
 	parttwo12(regions)
 }
 
+// https://preview.redd.it/16speesmxh6e1.gif?width=1280&format=mp4&s=e8ff9cd627ee7cd8e5186fffe16c49f466148dc6
 func parttwo12(regions [][]Point) {
 	price := 0
 	for _, region := range regions {
