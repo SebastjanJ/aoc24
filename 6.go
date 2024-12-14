@@ -8,6 +8,12 @@ type Point struct {
 	i, j int
 }
 
+func (p1 Point) isNeighbor(p2 Point) bool {
+	di := abs(p1.i - p2.i)
+	dj := abs(p1.j - p2.j)
+	return (di == 1 && dj == 0) || (di == 0 && dj == 1)
+}
+
 func (p Point) add(other Point) Point {
 	return Point{p.i + other.i, p.j + other.j}
 }

@@ -10,6 +10,13 @@ import (
 	"github.com/echojc/aocutil"
 )
 
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
 func insert(slice []int, i int, value int) []int {
 	// Grow the slice by one element
 	slice = append(slice, 0)
