@@ -18,6 +18,10 @@ func (p Point) add(other Point) Point {
 	return Point{p.i + other.i, p.j + other.j}
 }
 
+func (p Point) String() string {
+	return fmt.Sprintf("(%d,%d)", p.i, p.j)
+}
+
 type Guard struct {
 	cor   Point
 	dir   rune
