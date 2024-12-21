@@ -71,6 +71,25 @@ func getInputIntsAll(day int) [][]int {
 	return ints
 }
 
+func getInputString(day int) string {
+	if day == 0 {
+		lines, _ := GetTest[string]()
+		return strings.Join(lines, "\n")
+	}
+	client, err := aocutil.NewInputFromFile("session.txt")
+	if err != nil {
+		log.Fatalf("Failed to initialize AoC client: %v", err)
+	}
+
+	reader, _ := client.Reader(2024, day)
+	buf := make([]byte, 1024)
+	n, err := reader.Read(buf)
+	if err != nil {
+		log.Fatalf("Failed to read input: %v", err)
+	}
+	return string(buf[:n])
+}
+
 func getInputStrings(day int) []string {
 	client, err := aocutil.NewInputFromFile("session.txt")
 	if err != nil {
